@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+
+.fonyfond {
+    font-family: 'Philosopher', sans-serif;
+}
+.navbar-logo {
+    width: 60px;
+    height: auto;
+    
+}
+#banner {
+    text-align: center;
+    padding: 0;
+    position: relative;
+    font-family: 'Pacifico', cursive;
+}
+
+#banner img {
+    width: 100%; 
+    height: auto;
+    position: relative;
+}
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.custom-card {
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    border: 2px solid white;
+    color: white;
+    transition: transform 0.2s;
+    font-family: 'Philosopher', sans-serif;
+}
+
+.custom-card:hover {
+    transform: scale(1.03);
+}
+
+.custom-card img {
+    border-radius: 15px 15px 0 0;
+}
+
+.custom-card .card-title {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.custom-table {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.custom-table thead th {
+    background-color: #343a40; 
+    color: white;
+}
+
+.spacing {
+    margin-right: 10px;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#content {
+    flex: 1;
+    padding-bottom: 50px;
+}
+
+.footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+}
+

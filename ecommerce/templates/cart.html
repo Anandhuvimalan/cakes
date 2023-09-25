@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+This is the cart page. Proceed to review your items and place the order.
+{% endblock %}
+{% block title %}
+Cart - ABC Company PVT LTD
+{% endblock %}
+{% block content %}
+<div class="container-fluid text-light py-5" style="background-color: black;">
+    <div class="container">
+        {% if not cart_items %}
+        <div class="text-center">
+            <h1>Your Shopping Cart is Empty</h1>
+            <p>Please continue shopping</p>
+            <a href="{% url 'shop:allProdCat' %}" class="btn btn-primary mt-3">Shop Now</a>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    {% for cart_item in cart_items %}
+                    <div class="col-md-12 mb-3">
+                        <div class="card text-light" style="background-color: black; border-color: white;">
+                            <div class="row no-gutters">
+                                <div class="col-md-2">
+                                    <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.name }}" class="card-img">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ cart_item.product.name }}</h5>
+                                        <p class="card-text">SKU: {{ cart_item.product.id }}</p>
+                                        <p class="card-text">Price: ₹{{ cart_item.product.price }}</p>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <a href="{% url 'cart:add_cart' cart_item.product.id %}?quantity=1" class="btn btn-outline-light mr-2"><i class="fas fa-plus"></i></a>
+                                            </div>
+                                            <input type="text" style="border-radius: 10px; margin: 0 10px;" class="form-control text-center bg-dark text-light" value="{{ cart_item.quantity }}" readonly>
+                                            <div class="input-group-append">
+                                                <a href="{% url 'cart:add_cart' cart_item.product.id %}?quantity=-1" class="btn btn-outline-light ml-2"><i class="fas fa-minus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="card-body">
+                                        <p class="card-text">Total: ₹{{ cart_item.sub_total }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="card-body">
+                                        <a href="{% url 'cart:remove_cart_item' cart_item.id %}" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card text-light" style="background-color: black; border-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Summary</h5>
+                        <p class="card-text">Subtotal: ₹{{ total }}</p>
+                        <p class="card-text">Total Items: {{ counter }}</p>
+                        <a href="#" class="btn btn-primary btn-block">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
